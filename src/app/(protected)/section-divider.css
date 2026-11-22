@@ -1,0 +1,179 @@
+
+/* =========================================
+   NANA WORLD — FLOATING CHAPTER DIVIDER
+   ========================================= */
+
+.sw-chapter-divider {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 74px;
+  background: linear-gradient(
+    180deg,
+    #fbe4eb 0%,
+    #fbe5ed 100%
+  );
+}
+
+/* Garis horizontal tipis */
+.sw-chapter-divider-line {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #dda1b7 22%,
+    #dda1b7 78%,
+    transparent
+  );
+}
+
+/* Badge floating dengan claymorphism */
+.sw-chapter-badge {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+
+  min-height: 47px;
+  padding: 0 27px;
+
+  border: 1px solid #e9b9ca;
+  border-radius: 999px;
+
+  background: linear-gradient(
+    145deg,
+    #fffdfb,
+    #ffeaf0
+  );
+
+  color: #994362;
+
+  box-shadow:
+    5px 6px 14px rgba(155, 65, 100, 0.12),
+    -4px -4px 10px rgba(255, 255, 255, 0.8),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.95),
+    inset -2px -2px 5px rgba(190, 94, 126, 0.08);
+}
+
+.sw-chapter-badge span {
+  font-family: Georgia, serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+.sw-chapter-badge svg {
+  flex-shrink: 0;
+  color: #bd6887;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .sw-chapter-divider {
+    height: 65px;
+  }
+
+  .sw-chapter-divider-line {
+    left: 4%;
+    right: 4%;
+  }
+
+  .sw-chapter-badge {
+    min-height: 42px;
+    padding: 0 16px;
+    gap: 8px;
+  }
+
+  .sw-chapter-badge span {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  .sw-chapter-badge svg {
+    width: 13px;
+    height: 13px;
+  }
+}
+
+
+/* Divider menuju Interactive Letter */
+
+.sw-chapter-divider-letter {
+  background: linear-gradient(
+    180deg,
+    #f5d0df 0%,
+    #fbe5ed 100%
+  );
+}
+
+.sw-chapter-divider-letter .sw-chapter-badge {
+  background: linear-gradient(
+    145deg,
+    #fffdfb 0%,
+    #fff0f3 100%
+  );
+}
+
+.sw-chapter-divider-letter .sw-chapter-badge svg {
+  color: #b25176;
+  fill: rgba(178, 81, 118, 0.1);
+}
+
+@media (max-width: 600px) {
+  .sw-chapter-divider-letter .sw-chapter-badge {
+    padding-inline: 13px;
+  }
+
+  .sw-chapter-divider-letter .sw-chapter-badge span {
+    font-size: 9px;
+    letter-spacing: 0.8px;
+  }
+}
+
+
+/* =========================================
+   FINAL SURPRISE DIVIDER
+========================================= */
+
+.sw-chapter-divider-finale {
+  background: linear-gradient(
+    180deg,
+    #f9dce6 0%,
+    #fff0f3 100%
+  );
+}
+
+.sw-chapter-divider-finale .sw-chapter-badge {
+  background: linear-gradient(
+    145deg,
+    #fffdfb,
+    #ffe9f0
+  );
+
+  border-color: #e8b4c6;
+}
+
+.sw-chapter-divider-finale .sw-chapter-badge svg {
+  color: #ad4b70;
+}
+
+@media (max-width: 600px) {
+  .sw-chapter-divider-finale .sw-chapter-badge {
+    padding-inline: 13px;
+  }
+
+  .sw-chapter-divider-finale .sw-chapter-badge span {
+    font-size: 9px;
+    letter-spacing: 0.8px;
+  }
+}

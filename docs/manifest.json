@@ -1,0 +1,62 @@
+{
+  "format": "glTF 2.0 / GLB",
+  "axis": "Y-up",
+  "units": "approx meters",
+  "style": "procedural stylized 3D, vertex colors",
+  "models": [
+    {
+      "name": "teddy_bear",
+      "file": "models/teddy_bear.glb",
+      "bytes": 166928,
+      "geometry_count": 80
+    },
+    {
+      "name": "bunny",
+      "file": "models/bunny.glb",
+      "bytes": 100576,
+      "geometry_count": 22
+    },
+    {
+      "name": "kitty",
+      "file": "models/kitty.glb",
+      "bytes": 86088,
+      "geometry_count": 26
+    },
+    {
+      "name": "strawberry",
+      "file": "models/strawberry.glb",
+      "bytes": 83316,
+      "geometry_count": 36
+    },
+    {
+      "name": "heart_pillow",
+      "file": "models/heart_pillow.glb",
+      "bytes": 40332,
+      "geometry_count": 32
+    },
+    {
+      "name": "pink_ribbon",
+      "file": "models/pink_ribbon.glb",
+      "bytes": 17820,
+      "geometry_count": 5
+    },
+    {
+      "name": "flower",
+      "file": "models/flower.glb",
+      "bytes": 63720,
+      "geometry_count": 14
+    },
+    {
+      "name": "mechanical_claw",
+      "file": "models/mechanical_claw.glb",
+      "bytes": 40184,
+      "geometry_count": 12
+    },
+    {
+      "name": "claw_machine_cabinet",
+      "file": "models/claw_machine_cabinet.glb",
+      "bytes": 57256,
+      "geometry_count": 48
+    }
+  ]
+}

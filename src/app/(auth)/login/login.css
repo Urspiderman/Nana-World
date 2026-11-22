@@ -1,0 +1,652 @@
+
+/* =========================================
+   STRAWBERRY WORLD — LOGIN
+   Vintage Strawberry Garden Edition
+========================================= */
+
+/* =========================================
+   MAIN PAGE
+========================================= */
+
+.sw-login-page {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100svh;
+  padding: 48px 20px;
+  overflow: hidden;
+  background: #f9e5df;
+}
+
+/* =========================================
+   ROMANTIC VINTAGE BACKGROUND
+========================================= */
+
+.sw-login-paper {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at 8% 18%,
+      rgba(193, 98, 119, 0.23),
+      transparent 38%
+    ),
+    radial-gradient(
+      ellipse at 92% 78%,
+      rgba(193, 98, 119, 0.22),
+      transparent 38%
+    ),
+    radial-gradient(
+      ellipse at 50% 48%,
+      rgba(255, 251, 244, 0.78),
+      transparent 68%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(255, 239, 231, 0.72),
+      rgba(244, 207, 214, 0.65)
+    ),
+    url("/images/auth/background/paper-texture.webp")
+      center / cover no-repeat,
+    #f9e5df;
+}
+
+/* Tiny vintage wallpaper pattern */
+
+.sw-login-paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    radial-gradient(
+      circle,
+      rgba(153, 61, 80, 0.25) 1.5px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle,
+      rgba(153, 61, 80, 0.14) 1px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.7) 2px,
+      transparent 3px
+    );
+
+  background-size:
+    42px 42px,
+    42px 42px,
+    84px 84px;
+
+  background-position:
+    0 0,
+    21px 21px,
+    12px 12px;
+
+  opacity: 0.7;
+}
+
+/* Gingham in opposite corners */
+
+.sw-login-paper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    url("/images/auth/decorations/gingham-fabric.webp"),
+    url("/images/auth/decorations/gingham-fabric.webp");
+
+  background-repeat: no-repeat;
+
+  background-size:
+    460px 460px,
+    460px 460px;
+
+  background-position:
+    left -140px top -140px,
+    right -140px bottom -140px;
+
+  opacity: 0.28;
+  filter: saturate(0.75);
+}
+
+/* =========================================
+   LARGE SIDE DECORATIONS
+========================================= */
+
+.sw-login-decoration {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  width: clamp(420px, 42vw, 720px);
+  height: min(100svh, 1050px);
+  transform: translateY(-50%);
+  pointer-events: none;
+  user-select: none;
+}
+
+.sw-decoration-left {
+  left: max(-155px, calc(50% - 1040px));
+}
+
+.sw-decoration-right {
+  right: max(-155px, calc(50% - 1040px));
+}
+
+.sw-decoration-image {
+  object-fit: contain;
+  filter: drop-shadow(
+    0 14px 18px rgba(107, 48, 60, 0.09)
+  );
+}
+
+/* =========================================
+   CENTER CARD
+========================================= */
+
+.sw-login-center {
+  position: relative;
+  z-index: 5;
+  width: min(100%, 620px);
+  flex-shrink: 0;
+}
+
+.sw-login-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 730px;
+  padding: 118px 72px 112px;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 15%,
+      rgba(255, 255, 255, 0.72),
+      transparent 65%
+    ),
+    rgba(255, 248, 241, 0.97);
+
+  border: 2px solid #983d50;
+
+  border-radius:
+    110px 110px 100px 100px /
+    90px 90px 100px 100px;
+
+  box-shadow:
+    0 25px 70px rgba(110, 43, 60, 0.14),
+    inset 0 0 0 9px rgba(255, 248, 241, 0.96),
+    inset 0 0 0 10px rgba(206, 132, 146, 0.75);
+}
+
+/* Tiny decorative symbols inside frame */
+
+.sw-login-card::before {
+  content: "✦  ♡  ✦";
+  position: absolute;
+  top: 88px;
+  left: 50%;
+  z-index: 2;
+  transform: translateX(-50%);
+  color: #b66d7e;
+  font-size: 13px;
+  letter-spacing: 8px;
+  white-space: nowrap;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.sw-login-card::after {
+  content: "✦  ♡  ✦";
+  position: absolute;
+  bottom: 77px;
+  left: 50%;
+  z-index: 2;
+  transform: translateX(-50%);
+  color: #b66d7e;
+  font-size: 13px;
+  letter-spacing: 8px;
+  white-space: nowrap;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.sw-login-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  text-align: center;
+}
+
+/* =========================================
+   BURGUNDY RIBBONS
+========================================= */
+
+.sw-ribbon {
+  position: absolute;
+  left: 50%;
+  z-index: 4;
+  width: 190px;
+  height: 100px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.sw-ribbon-top {
+  top: 8px;
+}
+
+.sw-ribbon-bottom {
+  bottom: -20px;
+}
+
+.sw-ribbon-image {
+  object-fit: contain;
+  filter: drop-shadow(
+    0 6px 8px rgba(91, 25, 43, 0.16)
+  );
+}
+
+/* =========================================
+   TYPOGRAPHY
+========================================= */
+
+.sw-login-eyebrow {
+  margin: 0;
+  color: #852e43;
+  font-family: var(--font-heading), Georgia, serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+}
+
+.sw-login-title {
+  margin: 12px -28px 0;
+  color: #852e43;
+  font-family: var(--font-heading), Georgia, serif;
+  font-size: clamp(48px, 4.6vw, 72px);
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.sw-login-description {
+  max-width: 390px;
+  margin: 24px auto 0;
+  color: #743246;
+  font-family: var(--font-heading), Georgia, serif;
+  font-size: 23px;
+  line-height: 1.22;
+}
+
+/* =========================================
+   HEART DIVIDER
+========================================= */
+
+.sw-login-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 26px 0;
+}
+
+.sw-login-divider > span:first-child,
+.sw-login-divider > span:last-child {
+  width: 65px;
+  height: 1px;
+  background: #b16a79;
+}
+
+.sw-login-heart {
+  color: #852e43;
+  font-size: 32px;
+  line-height: 1;
+}
+
+/* =========================================
+   LOGIN FORM
+========================================= */
+
+.sw-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  width: 100%;
+}
+
+.sw-login-input {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  height: 64px;
+  padding: 0 22px;
+
+  border: 1.5px solid #d18b99;
+  border-radius: 999px;
+  background: rgba(255, 250, 246, 0.75);
+  color: #852e43;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.sw-login-input:focus-within {
+  border-color: #852e43;
+  background: #fffaf6;
+  box-shadow: 0 0 0 4px rgba(133, 46, 67, 0.08);
+}
+
+.sw-login-input > svg {
+  flex-shrink: 0;
+}
+
+.sw-login-input input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+
+  border: 0;
+  outline: 0;
+  background: transparent;
+
+  color: #713044;
+  font-family: var(--font-body), Arial, sans-serif;
+  font-size: 17px;
+}
+
+.sw-login-input input::placeholder {
+  color: #9e7983;
+  opacity: 1;
+}
+
+.sw-login-eye {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 4px;
+  border: 0;
+  background: transparent;
+  color: #852e43;
+}
+
+/* =========================================
+   SUBMIT BUTTON
+========================================= */
+
+.sw-login-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 64px;
+  margin-top: 4px;
+  padding: 12px 18px;
+
+  border: 0;
+  border-radius: 999px;
+  background: #921d31;
+  color: #fff8f3;
+
+  font-family: var(--font-heading), Georgia, serif;
+  font-size: 25px;
+  font-weight: 600;
+
+  box-shadow:
+    0 7px 18px rgba(146, 29, 49, 0.15);
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.sw-login-submit:hover:not(:disabled) {
+  background: #741427;
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 24px rgba(146, 29, 49, 0.23);
+}
+
+.sw-login-submit:disabled {
+  opacity: 0.65;
+}
+
+.sw-login-error {
+  margin: 0;
+  padding: 12px 15px;
+  border-radius: 12px;
+  background: #fce1e4;
+  color: #852e43;
+  font-size: 13px;
+}
+
+.sw-login-note {
+  max-width: 300px;
+  margin: 26px auto 0;
+  color: #b17f8c;
+  font-family: var(--font-heading), Georgia, serif;
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.3;
+}
+
+/* =========================================
+   LAPTOP
+========================================= */
+
+@media (max-width: 1200px) {
+  .sw-login-decoration {
+    width: 500px;
+    height: 850px;
+  }
+
+  .sw-decoration-left {
+    left: -235px;
+  }
+
+  .sw-decoration-right {
+    right: -235px;
+  }
+
+  .sw-login-paper::after {
+    background-size:
+      360px 360px,
+      360px 360px;
+  }
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+  .sw-login-decoration {
+    width: 360px;
+    height: 680px;
+    opacity: 0.65;
+  }
+
+  .sw-decoration-left {
+    left: -235px;
+  }
+
+  .sw-decoration-right {
+    right: -235px;
+  }
+
+  .sw-login-center {
+    width: min(100%, 560px);
+  }
+
+  .sw-login-card {
+    padding: 110px 60px 100px;
+  }
+
+  .sw-login-paper::after {
+    background-size:
+      300px 300px,
+      300px 300px;
+    opacity: 0.18;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 640px) {
+  .sw-login-page {
+    min-height: 100svh;
+    padding: 25px 12px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .sw-login-decoration {
+    display: none;
+  }
+
+  .sw-login-center {
+    width: min(100%, 440px);
+    flex-shrink: 1;
+  }
+
+  .sw-login-card {
+    min-height: 620px;
+    padding: 100px 38px 85px;
+
+    border-radius:
+      75px 75px 70px 70px /
+      65px 65px 70px 70px;
+  }
+
+  .sw-login-card::before {
+    top: 70px;
+    font-size: 11px;
+  }
+
+  .sw-login-card::after {
+    bottom: 60px;
+    font-size: 11px;
+  }
+
+  .sw-ribbon {
+    width: 140px;
+    height: 80px;
+  }
+
+  .sw-ribbon-top {
+    top: 10px;
+  }
+
+  .sw-ribbon-bottom {
+    bottom: -15px;
+  }
+
+  .sw-login-eyebrow {
+    font-size: 12px;
+  }
+
+  .sw-login-title {
+    margin: 10px -15px 0;
+    font-size: clamp(38px, 9vw, 54px);
+  }
+
+  .sw-login-description {
+    margin-top: 17px;
+    font-size: 18px;
+  }
+
+  .sw-login-divider {
+    margin: 18px 0;
+  }
+
+  .sw-login-form {
+    gap: 13px;
+  }
+
+  .sw-login-input {
+    height: 54px;
+    padding: 0 15px;
+    gap: 11px;
+  }
+
+  .sw-login-input input {
+    font-size: 15px;
+  }
+
+  .sw-login-submit {
+    min-height: 54px;
+    font-size: 20px;
+  }
+
+  .sw-login-note {
+    margin-top: 20px;
+    font-size: 15px;
+  }
+
+  .sw-login-paper::before {
+    opacity: 0.45;
+  }
+
+  .sw-login-paper::after {
+    background-size:
+      230px 230px,
+      230px 230px;
+
+    background-position:
+      left -80px top -80px,
+      right -80px bottom -80px;
+
+    opacity: 0.14;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+  .sw-login-card {
+    padding: 95px 26px 80px;
+  }
+
+  .sw-login-title {
+    font-size: 36px;
+  }
+
+  .sw-login-description {
+    font-size: 16px;
+  }
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .sw-login-input,
+  .sw-login-submit {
+    transition: none;
+  }
+}

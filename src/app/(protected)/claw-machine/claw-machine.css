@@ -1,0 +1,708 @@
+
+/* ==========================================
+   NANA WORLD — CLAW MACHINE 3D
+========================================== */
+
+.nw-arcade-page {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-height: 100svh;
+  overflow: hidden;
+  padding: 40px 24px 110px;
+  background: #d69ab5;
+  color: #84425e;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+/* BACKGROUND */
+
+.nw-arcade-backdrop {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background-image: url("/images/claw-machine/arcade-bg.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.nw-arcade-overlay {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(72, 25, 49, 0.27),
+    rgba(97, 43, 72, 0.05) 40%,
+    rgba(74, 28, 52, 0.3)
+  );
+  pointer-events: none;
+}
+
+/* HEADER */
+
+.nw-arcade-header {
+  position: relative;
+  z-index: 2;
+  max-width: 750px;
+  margin: 0 auto 10px;
+  text-align: center;
+  text-shadow: 0 3px 15px rgba(70, 24, 44, 0.4);
+}
+
+.nw-arcade-header > span {
+  color: #fff3e7;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+}
+
+.nw-arcade-header h1 {
+  margin: 10px 0;
+  color: #fff8f1;
+  font-size: clamp(42px, 5.2vw, 72px);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+}
+
+.nw-arcade-header p {
+  margin: 0;
+  color: #fff0ed;
+  font-size: 17px;
+  font-style: italic;
+}
+
+/* MAIN LAYOUT */
+
+.nw-arcade-layout {
+  position: relative;
+  display: grid;
+  grid-template-columns:
+    minmax(210px, 260px)
+    minmax(360px, 1fr)
+    minmax(210px, 260px);
+  align-items: center;
+  gap: 20px;
+  width: min(100%, 1450px);
+  min-height: 700px;
+  margin: 0 auto;
+}
+
+/* 3D MACHINE */
+
+.nw-machine-stage {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  height: 670px;
+}
+
+.nw-machine-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.nw-machine-canvas canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+.nw-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #fff6ed;
+  font-size: 20px;
+  font-style: italic;
+}
+
+/* GAME STATUS */
+
+.nw-game-status {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: max-content;
+  max-width: 95%;
+  min-height: 44px;
+  padding: 10px 22px;
+  transform: translateX(-50%);
+  border: 1px solid rgba(255, 240, 221, 0.85);
+  border-radius: 999px;
+  background: rgba(91, 38, 65, 0.8);
+  backdrop-filter: blur(14px);
+  color: #fff4eb;
+  font-size: 13px;
+  font-style: italic;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(57, 20, 38, 0.22);
+}
+
+.nw-status-dot {
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e8f5bf;
+  box-shadow: 0 0 10px rgba(232, 245, 191, 0.9);
+}
+
+/* VINTAGE SIDE PANELS */
+
+.nw-arcade-card {
+  position: relative;
+  padding: 34px 19px 24px;
+  border: 5px double #d7a574;
+  border-radius: 17px;
+  background: linear-gradient(
+    150deg,
+    rgba(255, 246, 236, 0.97),
+    rgba(249, 207, 218, 0.96)
+  );
+  box-shadow:
+    0 0 0 4px rgba(133, 57, 91, 0.55),
+    0 18px 40px rgba(59, 22, 42, 0.3),
+    inset 0 0 0 2px #fff9ef;
+  text-align: center;
+}
+
+.nw-arcade-card::before,
+.nw-arcade-card::after {
+  content: "✦";
+  position: absolute;
+  top: 12px;
+  color: #c58d64;
+  font-size: 17px;
+}
+
+.nw-arcade-card::before {
+  left: 12px;
+}
+
+.nw-arcade-card::after {
+  right: 12px;
+}
+
+.nw-card-bow {
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 40px;
+  filter: drop-shadow(0 4px 3px #a65b79);
+}
+
+.nw-card-eyebrow {
+  color: #b4778d;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+
+.nw-arcade-card h2 {
+  margin: 13px 0 27px;
+  color: #88435f;
+  font-size: clamp(23px, 2.5vw, 30px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+/* INSTRUCTIONS */
+
+.nw-instructions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.nw-instruction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+}
+
+.nw-instruction-icon {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border: 2px solid #d9a4b6;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #fff8f4, #f1b6ca);
+  color: #a15375;
+  font-family: Arial, sans-serif;
+  font-size: 27px;
+  box-shadow:
+    0 4px 0 #d49db2,
+    inset 0 2px 4px rgba(255, 255, 255, 0.7);
+}
+
+.nw-instruction p {
+  margin: 0;
+  color: #94566f;
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* CONTROLS */
+
+.nw-controls {
+  display: grid;
+  gap: 13px;
+  margin-top: 29px;
+}
+
+.nw-direction-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px;
+}
+
+.nw-direction-buttons button {
+  height: 49px;
+  border: 2px solid #c98ba3;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #fff6f3, #f0bed0);
+  color: #99496d;
+  font-family: Arial, sans-serif;
+  font-size: 27px;
+  font-weight: 700;
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+  box-shadow: 0 4px 0 #bf7e9b;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+.nw-direction-buttons button:hover:not(:disabled) {
+  background: #fff4f5;
+}
+
+.nw-direction-buttons button:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #bf7e9b;
+}
+
+.nw-drop-button {
+  min-height: 52px;
+  padding: 11px;
+  border: 2px solid #a65a7c;
+  border-radius: 13px;
+  background: linear-gradient(180deg, #e9a4bf, #b9668a);
+  color: #fffaf5;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #8e4567;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+.nw-drop-button:hover:not(:disabled) {
+  filter: brightness(1.07);
+}
+
+.nw-drop-button:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #8e4567;
+}
+
+.nw-direction-buttons button:disabled,
+.nw-drop-button:disabled,
+.nw-play-again:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.nw-keyboard-help {
+  margin: 19px 0 0;
+  color: #a66f84;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
+
+.nw-sound-toggle {
+  margin-top: 12px;
+  padding: 8px;
+  border: 0;
+  background: transparent;
+  color: #985775;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.nw-sound-toggle:hover {
+  color: #783452;
+}
+
+/* COLLECTION */
+
+.nw-prize-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+  margin-top: 22px;
+}
+
+.nw-prize-slot {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 2px solid #e1b3bf;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #fbe3e8, #edc3d0);
+  color: #c58aa1;
+  box-shadow: inset 0 2px 7px rgba(126, 59, 84, 0.12);
+}
+
+.nw-prize-slot span {
+  font-size: 28px;
+  opacity: 0.65;
+}
+
+.nw-prize-slot.unlocked {
+  border-color: #d6a17c;
+  background: #fff5ec;
+}
+
+.nw-prize-slot img {
+  display: block;
+  width: 95%;
+  height: 95%;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 3px rgba(88, 41, 58, 0.2));
+}
+
+.nw-collection-progress {
+  margin: 24px 0 12px;
+  color: #93516c;
+  font-size: 18px;
+  font-style: italic;
+}
+
+.nw-progress-track {
+  width: 100%;
+  height: 9px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #f4e0e5;
+  box-shadow: inset 0 2px 4px rgba(116, 54, 81, 0.15);
+}
+
+.nw-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #e9a6c0, #b85d84);
+  transition: width 0.45s ease;
+}
+
+.nw-play-again {
+  width: 100%;
+  min-height: 47px;
+  margin-top: 22px;
+  border: 2px solid #a45a7a;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #d88fae, #a8567b);
+  color: #fff8f3;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #87425f;
+}
+
+.nw-play-again:hover:not(:disabled) {
+  filter: brightness(1.06);
+}
+
+.nw-collection-note {
+  margin: 19px 0 0;
+  color: #a66c82;
+  font-size: 12px;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* REWARD POPUP */
+
+.nw-reward-overlay {
+  position: fixed;
+  z-index: 99999;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(55, 17, 37, 0.76);
+  backdrop-filter: blur(12px);
+}
+
+.nw-reward-modal {
+  width: min(430px, 100%);
+  padding: 32px 28px;
+  border: 6px double #d6a576;
+  border-radius: 24px;
+  background: linear-gradient(155deg, #fff8f0, #f7d6e1);
+  box-shadow: 0 25px 75px rgba(35, 9, 23, 0.4);
+  text-align: center;
+  animation: nwRewardAppear 0.45s ease-out;
+}
+
+@keyframes nwRewardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.nw-reward-stars {
+  display: block;
+  color: #d58caa;
+  font-size: 25px;
+  letter-spacing: 12px;
+}
+
+.nw-reward-image {
+  display: block;
+  width: 190px;
+  height: 190px;
+  margin: 13px auto;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 9px #dfb3c3);
+}
+
+.nw-reward-modal h2 {
+  margin: 13px 0;
+  color: #84415f;
+  font-size: 34px;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.nw-reward-modal p {
+  margin: 0 auto;
+  max-width: 320px;
+  color: #a16b80;
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.7;
+}
+
+.nw-reward-modal button {
+  margin-top: 23px;
+  padding: 14px 28px;
+  border: 0;
+  border-radius: 999px;
+  background: #b66b8d;
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.nw-reward-modal button:hover {
+  background: #964c70;
+}
+
+/* TABLET */
+
+@media (max-width: 1100px) {
+  .nw-arcade-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    max-width: 820px;
+    gap: 34px 20px;
+  }
+
+  .nw-machine-stage {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    height: 620px;
+  }
+
+  .nw-how-to,
+  .nw-collection {
+    align-self: stretch;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .nw-arcade-page {
+    padding: 35px 12px 125px;
+  }
+
+  .nw-arcade-backdrop {
+    background-position: 50% center;
+  }
+
+  .nw-arcade-header > span {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .nw-arcade-header h1 {
+    font-size: 43px;
+  }
+
+  .nw-arcade-header p {
+    font-size: 13px;
+  }
+
+  .nw-arcade-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 10px;
+  }
+
+  .nw-machine-stage {
+    order: 0;
+    width: 100%;
+    height: 470px;
+  }
+
+  .nw-how-to {
+    order: 1;
+  }
+
+  .nw-collection {
+    order: 2;
+  }
+
+  .nw-arcade-card {
+    width: min(100%, 420px);
+    padding: 30px 20px 24px;
+  }
+
+  .nw-instructions {
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 9px;
+  }
+
+  .nw-instruction {
+    flex: 1;
+  }
+
+  .nw-instruction-icon {
+    width: 46px;
+    height: 46px;
+    font-size: 23px;
+  }
+
+  .nw-instruction p {
+    font-size: 12px;
+  }
+
+  .nw-game-status {
+    bottom: 0;
+    font-size: 11px;
+  }
+
+  .nw-prize-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .nw-reward-image {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 380px) {
+  .nw-arcade-header h1 {
+    font-size: 36px;
+  }
+
+  .nw-machine-stage {
+    height: 400px;
+  }
+
+  .nw-arcade-card {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+
+  .nw-game-status {
+    font-size: 10px;
+    padding: 9px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nw-reward-modal {
+    animation: none;
+  }
+
+  .nw-progress-fill,
+  .nw-direction-buttons button,
+  .nw-drop-button {
+    transition: none;
+  }
+}
+
+
+/* ==========================================
+   NANA WORLD — PREMIUM SCENE UPDATE
+========================================== */
+
+/* Taller 3D machine area on desktop */
+@media (min-width: 1101px) {
+  .nw-machine-stage {
+    height: 740px;
+  }
+
+  .nw-arcade-layout {
+    min-height: 760px;
+  }
+}
+
+/* Tablet */
+@media (min-width: 601px) and (max-width: 1100px) {
+  .nw-machine-stage {
+    height: 650px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .nw-machine-stage {
+    height: 480px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 380px) {
+  .nw-machine-stage {
+    height: 420px;
+  }
+}

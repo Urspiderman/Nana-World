@@ -1,0 +1,901 @@
+
+/* =========================================
+   NANA WORLD — PHOTOBOOTH
+   Claymorphism / Responsive
+========================================= */
+
+.nana-booth {
+  --pink: #d78fac;
+  --pink-dark: #a85f7f;
+  --pink-soft: #fbe8ef;
+  --cream: #fff9fa;
+  --text: #89546d;
+  --muted: #ad8195;
+  --stroke: #f0cfdb;
+
+  position: relative;
+  isolation: isolate;
+  min-height: 100svh;
+  overflow-x: clip;
+  background: #f9e6eb;
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.nana-booth *,
+.nana-booth *::before,
+.nana-booth *::after {
+  box-sizing: border-box;
+}
+
+.nana-booth button,
+.nana-booth input {
+  font: inherit;
+}
+
+.nana-booth button {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nana-booth button:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+}
+
+.nana-booth button:focus-visible,
+.nana-booth input:focus-visible {
+  outline: 3px solid #d78fac;
+  outline-offset: 3px;
+}
+
+/* BACKGROUND */
+
+.nana-booth-background {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    url("/images/photobooth/backgrounds/studio-mobile.webp")
+      center / cover no-repeat;
+}
+
+/* LAYOUT */
+
+.nana-container {
+  width: min(100% - 32px, 1480px);
+  margin-inline: auto;
+  padding: 42px 0 48px;
+}
+
+.nana-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: stretch;
+  gap: 20px;
+}
+
+/* CLAY CARDS */
+
+.nana-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 24px;
+
+  border: 1px solid rgba(255, 255, 255, 0.96);
+  border-radius: 30px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(255, 242, 247, 0.97)
+  );
+
+  box-shadow:
+    12px 14px 30px rgba(150, 76, 107, 0.13),
+    -7px -7px 20px rgba(255, 255, 255, 0.85),
+    inset 4px 4px 9px rgba(255, 255, 255, 0.95),
+    inset -5px -5px 12px rgba(217, 147, 173, 0.12);
+}
+
+.nana-card-header {
+  margin-bottom: 24px;
+}
+
+.nana-eyebrow {
+  display: block;
+  color: #bc8199;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.nana-card-header h2 {
+  margin: 12px 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(25px, 2.2vw, 32px);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.nana-card-spacer {
+  flex: 1;
+}
+
+/* BUTTONS */
+
+.nana-btn {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 12px 17px;
+  border-radius: 15px;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+.nana-btn:not(:disabled):active {
+  transform: translateY(2px);
+}
+
+.nana-btn-primary {
+  border: 1px solid #bd7897;
+
+  background: linear-gradient(
+    145deg,
+    #d398b2,
+    #b97696
+  );
+
+  color: white;
+
+  box-shadow:
+    5px 6px 12px rgba(172, 94, 127, 0.22),
+    inset 3px 3px 6px rgba(255, 255, 255, 0.28),
+    inset -3px -3px 6px rgba(125, 57, 88, 0.13);
+}
+
+.nana-btn-primary:not(:disabled):hover {
+  background: linear-gradient(
+    145deg,
+    #dca4bb,
+    #bd7a99
+  );
+}
+
+.nana-btn-secondary,
+.nana-btn-icon {
+  border: 1px solid #efceda;
+
+  background: linear-gradient(
+    145deg,
+    #fffafd,
+    #f9e6ee
+  );
+
+  color: #a66c86;
+
+  box-shadow:
+    4px 5px 10px rgba(180, 113, 142, 0.11),
+    inset 3px 3px 6px white,
+    inset -3px -3px 6px rgba(221, 164, 187, 0.1);
+}
+
+.nana-btn-icon {
+  width: 48px;
+  flex: 0 0 48px;
+  padding: 0;
+}
+
+/* CAMERA */
+
+.nana-camera {
+  position: relative;
+  display: grid;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  place-items: center;
+  overflow: hidden;
+
+  border: 6px solid #fff;
+  border-radius: 24px;
+  background: #ecd5df;
+
+  box-shadow:
+    6px 7px 17px rgba(170, 107, 135, 0.14),
+    inset 4px 4px 10px rgba(172, 104, 132, 0.12);
+}
+
+.nana-camera video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nana-camera video.mirror {
+  transform: scaleX(-1);
+}
+
+.nana-camera-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  padding: 20px;
+  text-align: center;
+  color: #a9798e;
+}
+
+.nana-placeholder-icon {
+  display: grid;
+  width: 95px;
+  height: 95px;
+  place-items: center;
+  border-radius: 30px;
+  color: #c991a9;
+
+  background: linear-gradient(
+    145deg,
+    #f7e6ec,
+    #e8cdd8
+  );
+
+  box-shadow:
+    6px 7px 13px rgba(170, 107, 135, 0.12),
+    inset 4px 4px 9px rgba(255, 255, 255, 0.55);
+}
+
+.nana-camera-placeholder strong {
+  font-size: 13px;
+}
+
+.nana-camera-placeholder p {
+  margin: 0;
+  font-size: 11px;
+}
+
+.nana-countdown {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  display: grid;
+  place-items: center;
+
+  background: rgba(85, 38, 61, 0.38);
+  color: white;
+
+  font-family: Georgia, serif;
+  font-size: clamp(90px, 15vw, 160px);
+}
+
+.nana-shot-counter {
+  position: absolute;
+  z-index: 6;
+  top: 14px;
+  right: 14px;
+
+  padding: 9px 13px;
+  border-radius: 30px;
+
+  background: #fff5f9;
+  color: #a36d85;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* CAMERA ACTIONS */
+
+.nana-camera-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.nana-camera-actions .nana-btn-primary,
+.nana-camera-actions .nana-btn-secondary {
+  flex: 1 1 135px;
+}
+
+.nana-thumbnails {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.nana-thumbnails button {
+  display: grid;
+  min-width: 0;
+  aspect-ratio: 4 / 3;
+  place-items: center;
+  overflow: hidden;
+  padding: 0;
+
+  border: 3px solid #fff;
+  border-radius: 15px;
+  background: #f1dce5;
+  color: #ac8193;
+
+  box-shadow:
+    4px 5px 10px rgba(170, 107, 135, 0.11),
+    inset 2px 2px 5px white;
+}
+
+.nana-thumbnails button.active {
+  border-color: #cb86a3;
+
+  box-shadow:
+    0 0 0 2px #f8dce8,
+    4px 5px 10px rgba(170, 107, 135, 0.15);
+}
+
+.nana-thumbnails img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nana-capture-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 16px;
+  color: #ac8193;
+  font-size: 11px;
+}
+
+.nana-capture-footer button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  border: 0;
+  background: transparent;
+  color: #a56a84;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* EDIT SECTIONS */
+
+.nana-section + .nana-section {
+  margin-top: 28px;
+}
+
+.nana-section h3 {
+  margin: 0 0 14px;
+  color: #956079;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.nana-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.nana-section-heading span {
+  margin-bottom: 14px;
+  color: #b48b9d;
+  font-size: 11px;
+}
+
+/* FRAME SELECTION */
+
+.nana-frame-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.nana-frame-grid button {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 5px;
+
+  border: 1px solid #f0d4df;
+  border-radius: 17px;
+
+  background: linear-gradient(
+    145deg,
+    #fffafd,
+    #faeaf0
+  );
+
+  color: #a6788c;
+
+  box-shadow:
+    4px 5px 9px rgba(174, 108, 138, 0.09),
+    inset 3px 3px 6px white;
+}
+
+.nana-frame-grid button.selected {
+  border-color: #c884a1;
+  background: #f9e3ed;
+
+  box-shadow:
+    inset 3px 3px 7px rgba(172, 100, 132, 0.13),
+    inset -3px -3px 7px white;
+}
+
+.nana-frame-grid img {
+  display: block;
+  width: 100%;
+  height: 115px;
+  object-fit: contain;
+}
+
+.nana-frame-grid span {
+  font-size: 9px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* PHOTO EDITOR */
+
+.nana-editor {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  border: 6px solid white;
+  border-radius: 20px;
+  background: #eed7e1;
+
+  box-shadow:
+    5px 7px 15px rgba(170, 107, 135, 0.14),
+    inset 4px 4px 8px rgba(166, 97, 128, 0.1);
+}
+
+.nana-editor canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: grab;
+}
+
+.nana-editor canvas:active {
+  cursor: grabbing;
+}
+
+.nana-editor-placeholder {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 20px;
+  color: #ad8195;
+  font-size: 12px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.nana-photo-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.nana-photo-tabs button {
+  min-height: 43px;
+  padding: 8px 4px;
+
+  border: 1px solid #efd3de;
+  border-radius: 13px;
+
+  background: linear-gradient(
+    145deg,
+    #fffafd,
+    #f8e8ef
+  );
+
+  color: #a6788c;
+  font-size: 10px;
+
+  box-shadow:
+    3px 4px 8px rgba(174, 108, 138, 0.08),
+    inset 2px 2px 5px white;
+}
+
+.nana-photo-tabs button.selected {
+  border-color: #c884a1;
+  background: #f7dfe9;
+  font-weight: 700;
+
+  box-shadow:
+    inset 3px 3px 7px rgba(172, 100, 132, 0.12),
+    inset -3px -3px 7px white;
+}
+
+/* ZOOM */
+
+.nana-zoom {
+  margin-top: 22px;
+}
+
+.nana-zoom-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #a07186;
+  font-size: 12px;
+}
+
+.nana-zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 13px;
+}
+
+.nana-zoom-controls button {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+
+  border: 1px solid #efd1dd;
+  border-radius: 14px;
+
+  background: linear-gradient(
+    145deg,
+    #fffafd,
+    #f5dfe9
+  );
+
+  color: #a96e88;
+  font-size: 22px;
+
+  box-shadow:
+    4px 5px 10px rgba(172, 101, 132, 0.1),
+    inset 3px 3px 6px white;
+}
+
+.nana-zoom-controls input {
+  width: 100%;
+  min-width: 0;
+  height: 30px;
+  accent-color: #c4829f;
+  cursor: pointer;
+}
+
+/* FILTERS */
+
+.nana-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.nana-filter-grid button {
+  min-height: 45px;
+  padding: 10px;
+
+  border: 1px solid #efd4df;
+  border-radius: 14px;
+
+  background: linear-gradient(
+    145deg,
+    #fffafd,
+    #f9e8ef
+  );
+
+  color: #a3768a;
+  font-size: 12px;
+
+  box-shadow:
+    4px 5px 9px rgba(174, 108, 138, 0.09),
+    inset 3px 3px 6px white;
+}
+
+.nana-filter-grid button.selected {
+  border-color: #c884a1;
+  background: #f7dfe9;
+  font-weight: 700;
+
+  box-shadow:
+    inset 3px 3px 7px rgba(172, 100, 132, 0.12),
+    inset -3px -3px 7px white;
+}
+
+/* EDITOR TIP */
+
+.nana-editor-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+
+  margin-top: 25px;
+  padding: 15px;
+
+  border: 1px solid #f1d6e1;
+  border-radius: 16px;
+
+  background: #fcecf2;
+  color: #a47589;
+
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.nana-editor-tip svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* PHOTOSTRIP */
+
+.nana-preview-stage {
+  display: flex;
+  width: 100%;
+  min-height: 540px;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+  padding: 22px 12px;
+
+  border: 1px solid #efd7e1;
+  border-radius: 23px;
+
+  background: linear-gradient(
+    145deg,
+    #f9ebf0,
+    #f3dfe7
+  );
+
+  box-shadow:
+    inset 5px 5px 12px rgba(168, 100, 130, 0.1),
+    inset -5px -5px 12px rgba(255, 255, 255, 0.9);
+}
+
+.nana-photostrip {
+  display: block;
+  width: min(100%, 260px);
+  height: auto;
+  aspect-ratio: 887 / 1774;
+  object-fit: contain;
+
+  filter: drop-shadow(
+    5px 10px 10px rgba(146, 77, 107, 0.17)
+  );
+}
+
+.nana-download {
+  width: 100%;
+  margin-top: 22px;
+}
+
+.nana-result-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 16px;
+  color: #aa7d91;
+  font-size: 11px;
+}
+
+/* ERRORS */
+
+.nana-error {
+  max-width: 680px;
+  margin: 22px auto 0;
+  padding: 15px;
+
+  border: 1px solid #e7b4c6;
+  border-radius: 16px;
+
+  background: #fff0f4;
+  color: #a64d6d;
+
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ANIMATION */
+
+.nana-spin {
+  animation: nana-spin 1s linear infinite;
+}
+
+@keyframes nana-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* TABLET */
+
+@media (min-width: 700px) {
+  .nana-booth-background {
+    background:
+      url("/images/photobooth/backgrounds/studio-desktop.webp")
+        center / cover no-repeat;
+  }
+
+  .nana-container {
+    width: min(100% - 48px, 1480px);
+    padding-top: 55px;
+  }
+
+  .nana-layout {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .nana-layout > .nana-card:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .nana-card {
+    padding: 26px;
+  }
+}
+
+/* DESKTOP — EQUAL HEIGHT */
+
+@media (min-width: 1150px) {
+  .nana-container {
+    width: min(100% - 64px, 1480px);
+    padding-top: 42px;
+  }
+
+  .nana-layout {
+    grid-template-columns:
+      minmax(0, 1.1fr)
+      minmax(0, 1fr)
+      minmax(0, 0.9fr);
+
+    gap: 22px;
+    align-items: stretch;
+  }
+
+  .nana-layout > .nana-card:last-child {
+    grid-column: auto;
+  }
+
+  .nana-card {
+    height: 100%;
+    padding: 26px;
+  }
+
+  .nana-preview-stage {
+    min-height: 570px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 699px) {
+  .nana-container {
+    width: calc(100% - 24px);
+    padding: 22px 0 35px;
+  }
+
+  .nana-layout {
+    gap: 18px;
+  }
+
+  .nana-card {
+    padding: 19px;
+    border-radius: 25px;
+  }
+
+  .nana-card-header {
+    margin-bottom: 20px;
+  }
+
+  .nana-card-header h2 {
+    font-size: 27px;
+  }
+
+  .nana-camera {
+    border-width: 5px;
+    border-radius: 19px;
+  }
+
+  .nana-preview-stage {
+    min-height: 0;
+    padding: 20px 10px;
+  }
+
+  .nana-photostrip {
+    width: min(100%, 290px);
+  }
+
+  .nana-frame-grid img {
+    height: 110px;
+  }
+
+  .nana-section + .nana-section {
+    margin-top: 25px;
+  }
+}
+
+/* SMALL PHONES */
+
+@media (max-width: 390px) {
+  .nana-container {
+    width: calc(100% - 18px);
+  }
+
+  .nana-card {
+    padding: 15px;
+    border-radius: 22px;
+  }
+
+  .nana-card-header h2 {
+    font-size: 24px;
+  }
+
+  .nana-frame-grid {
+    gap: 5px;
+  }
+
+  .nana-frame-grid button {
+    padding: 8px 3px;
+  }
+
+  .nana-frame-grid img {
+    height: 92px;
+  }
+
+  .nana-frame-grid span {
+    font-size: 8px;
+  }
+
+  .nana-photo-tabs {
+    gap: 5px;
+  }
+
+  .nana-photo-tabs button {
+    font-size: 9px;
+  }
+
+  .nana-btn {
+    padding-inline: 10px;
+    font-size: 11px !important;
+  }
+
+  .nana-zoom-controls {
+    gap: 8px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  .nana-booth *,
+  .nana-booth *::before,
+  .nana-booth *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
